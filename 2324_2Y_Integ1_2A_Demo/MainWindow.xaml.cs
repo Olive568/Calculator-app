@@ -49,6 +49,9 @@ namespace _2324_2Y_Integ1_2A_Demo
             btnMult.Content = "x";
             btnDiv.Content = "/";
             btnEnter.Content = "=";
+            btnsquare.Content = "^";
+            btnsqrt.Content = "√";
+            btnclear.Content = "AC";
         }
 
         private void numberEnter(int x)
@@ -66,8 +69,13 @@ namespace _2324_2Y_Integ1_2A_Demo
 
             tbCalc.Text = input;
         }
-
+        
         #region KeypadEvents
+        private void btnclear_Click(object sender, RoutedEventArgs e)
+        {
+            tbCalc.Clear();
+            num1 = 0; num2=0; ope = -1;
+        }
         private void btn9_Click(object sender, RoutedEventArgs e)
         {
             numberEnter(9);
@@ -151,7 +159,18 @@ namespace _2324_2Y_Integ1_2A_Demo
         {
             ope = 3;
             tbCalc.Text = "";
-        } 
+        }
+        private void btnsquare_Click(object sender, RoutedEventArgs e)
+        {
+            ope = 4;
+            tbCalc.Text = "";
+        }
+        private void btnsqrt_Click(object sender, RoutedEventArgs e)
+        {
+            ope = 5;
+            tbCalc.Text = "";
+        }
+
         #endregion
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
@@ -170,6 +189,12 @@ namespace _2324_2Y_Integ1_2A_Demo
                 case 3:
                     num1 /= num2;
                     break;
+                case 4:
+                    num1 = (int)Math.Pow(num1,num2);
+                    break;
+                case 5:
+                    num1 = (int)Math.Sqrt(num1);
+                    break;
             }
             
             if(ope > -1)
@@ -179,5 +204,7 @@ namespace _2324_2Y_Integ1_2A_Demo
                 num2 = 0;
             }
         }
+
+        
     }
 }
